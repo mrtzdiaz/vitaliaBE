@@ -14,35 +14,48 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vitalia.vitaliaBE.model.Categorias;
 
+import com.vitalia.vitaliaBE.service.CategoriasService;
+
+
 
 @RestController
 @RequestMapping(path="/api/categorias/")
 
 public class CategoriasController {
-	@GetMapping
-	public ArrayList<Categorias> getcategories(){
-		return null;
+	
+	private final CategoriasService categoriasService;
+	
+	public CategoriasController(CategoriasService categoriasService) {
+		this.categoriasService = categoriasService;
 	}
 	
+
+	
+	@GetMapping
+	public ArrayList<Categorias> getcategories(){
+		return categoriasService.getListaCategorias();
+	}
+	
+	
 	@GetMapping(path = "{CategoriasId}")
-	public Categorias getcategoriesById(@PathVariable("CategoriasId") Long id){
-		return null;
+	public Categorias getcategoriesById(@PathVariable("CategoriasId") int id){
+		return categoriasService.getCategorias(id);
 	}
 	
 	@DeleteMapping(path = "{CategoriasId}")
-	public Categorias deletecategoriesById(@PathVariable("CategoriasId") Long id){
-		return null;
+	public Categorias deletecategoriestById(@PathVariable("CategoriasId") int id){
+		return categoriasService.deleteCategorias(id);
 	}
 	
 	@PostMapping
 	public Categorias addcategories(@RequestBody Categorias categorias) {
-		return null;
+		return categoriasService.addCategories(categorias);
 	}
 	
 	@PutMapping(path = "{CategoriasId}")
-	public Categorias updatecategories(@PathVariable("CategoriasId") Long id,
-			@RequestParam(required=false) String Tipodeproducto,
-			@RequestParam(required=false) String nombre
+	public Categorias updatecategories(@PathVariable("CategoriasId") int id,
+			@RequestParam(required=false) String nombre,
+			@RequestParam(required=false) String Tipodeproducto
 			) {
 	return null;
 	}
