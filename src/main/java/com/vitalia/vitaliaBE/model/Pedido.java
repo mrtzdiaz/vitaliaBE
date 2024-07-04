@@ -2,7 +2,7 @@ package com.vitalia.vitaliaBE.model;
 
 import java.util.Date;
 
-public class pedido {
+public class Pedido {
 	
 	private Long id;
 	private String status;
@@ -10,11 +10,11 @@ public class pedido {
 	private Date fechaentrega;
 	private String formaDePago;
 	
-	public pedido() {
+	public Pedido() {
 		
 	}
 	
-	public pedido(Long id, String status, Date fechaPedido, Date fechaentrega, String formaDePago) {
+	public Pedido(Long id, String status, Date fechaPedido, Date fechaentrega, String formaDePago) {
 		super();
 		this.id = id;
 		this.status = status;
