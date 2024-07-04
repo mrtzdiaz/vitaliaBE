@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vitalia.vitaliaBE.model.Pedido;
 
 @RestController
-@RequestMapping(path="/api/productos/")
+@RequestMapping(path="/api/pedidos/")
 public class PedidoController {
 	
 	

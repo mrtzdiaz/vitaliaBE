@@ -22,16 +22,20 @@ public class ProductoService {
 	}
 
 
-
-//	public void setListaProductos(ArrayList<Producto> listaProductos) {
-//		this.listaProductos = listaProductos;
-//	}
-
-
-
 	public  ArrayList<Producto> getListaproductos() {
 		return listaProductos;
 	}
+	
+	public  Producto getProduct(int id) {
+		Producto tmpProd=null;
+		for (Producto producto : listaProductos) {
+			if(producto.getId()==id) {
+				tmpProd= producto;
+				break;
+			}
+		}
+		return tmpProd;
+	}//getProduct
 	
 
 

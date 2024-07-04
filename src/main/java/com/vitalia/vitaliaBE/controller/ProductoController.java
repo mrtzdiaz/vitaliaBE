@@ -32,13 +32,13 @@ public class ProductoController {
 		return productoService.getListaproductos();
 	}
 	
-	@GetMapping(path = "{ProductoId}")
-	public Producto getProductById(@PathVariable("ProductoId") Long id){
-		return null;
+	@GetMapping(path = "{productoId}")
+	public Producto getProductById(@PathVariable("productoId") int id){
+		return productoService.getProduct(id);
 	}
 	
 	@DeleteMapping(path = "{ProductoId}")
-	public Producto deleteProductById(@PathVariable("ProductoId") Long id){
+	public Producto deleteProductById(@PathVariable("ProductoId") int id){
 		return null;
 	}
 	
@@ -48,7 +48,7 @@ public class ProductoController {
 	}
 	
 	@PutMapping(path = "{ProductoId}")
-	public Producto updateProduct(@PathVariable("ProductoId") Long id,
+	public Producto updateProduct(@PathVariable("ProductoId") int id,
 			@RequestParam(required=false) String nombre,
 			@RequestParam(required=false) String descripcion,
 			@RequestParam(required=false) String imagen,
