@@ -22,7 +22,6 @@ public class ProductoController {
 	private final ProductoService productoService;
 	
 	
-	
 	public ProductoController(ProductoService productoService) {
 		this.productoService = productoService;
 	}
@@ -39,12 +38,12 @@ public class ProductoController {
 	
 	@DeleteMapping(path = "{ProductoId}")
 	public Producto deleteProductById(@PathVariable("ProductoId") int id){
-		return null;
+		return productoService.deleteProduct(id);
 	}
 	
 	@PostMapping
 	public Producto addProduct(@RequestBody Producto producto) {
-		return null;
+		return productoService.addProduct(producto);
 	}
 	
 	@PutMapping(path = "{ProductoId}")

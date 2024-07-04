@@ -37,6 +37,33 @@ public class ProductoService {
 		return tmpProd;
 	}//getProduct
 	
+	public  Producto deleteProduct(int id) {
+		Producto tmpProd=null;
+		for (Producto producto : listaProductos) {
+			if(producto.getId()==id) {
+				tmpProd= listaProductos.remove(listaProductos.indexOf(producto));				
+				break;
+			}//if
+		}//for
+		return tmpProd;
+	}//deleteProduct
+	
+	public  Producto addProduct(Producto producto) {
+		Producto tmpProd=null;
+		boolean existe=false;
+		for (Producto prod : listaProductos) {
+			if(prod.getNombre().equals(producto.getNombre())) {
+				existe=true;		
+				break;
+			}//if
+		}//for
+		if(!existe) {
+			listaProductos.add(producto);
+			tmpProd=producto;
+		}//if
+		return tmpProd;
+	}//addProduct
+	
 
 
 	
