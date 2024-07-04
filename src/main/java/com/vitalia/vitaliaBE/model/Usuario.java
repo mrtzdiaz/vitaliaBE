@@ -9,15 +9,15 @@ public class Usuario {
 	private String telefono;
 	private String contrasena;
 	private Boolean administrador;
-	
+	private static Long total = (long) 1;
 
 	public Usuario() {
 		
 	}//Constructor Vacio
 	
 	public Usuario(String nombre, String apellido, String correo, String telefono, String contrasena,
-			Boolean administrador) {
-		super();
+			boolean administrador) {
+		this.id = Usuario.total++;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;
