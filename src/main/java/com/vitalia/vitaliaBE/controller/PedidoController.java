@@ -14,27 +14,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vitalia.vitaliaBE.model.Pedido;
+import com.vitalia.vitaliaBE.service.PedidoService;
+import com.vitalia.vitaliaBE.service.ProductoService;
 
 @RestController
-@RequestMapping(path="/api/pedidos/")
+@RequestMapping(path="/api/pedido/")
 public class PedidoController {
 	
+	private final PedidoService pedidoService;
 	
-	 @GetMapping
+	 public PedidoController(PedidoService pedidoService) {
+		super();
+		this.pedidoService = pedidoService;
+	}
+
+
+	@GetMapping
 	    public ArrayList<Pedido> getAllPedido() {
-	        return null;
+	        return pedidoService.getAllPedido();
 	    }
 	    
 	   
 	    @GetMapping("/{Pedidoid}")
-	    public Pedido getPedidoById(@PathVariable("Pedidoid") Long id) {
-	    	return null;
+	    public Pedido getPedidoById(@PathVariable("Pedidoid") int id) {
+	    	return pedidoService.getPedido(id);
 	    }
 	    
 	    
 	    @DeleteMapping(path = "{Pedidoid}")
-		public Pedido deletePedidoById(@PathVariable("Pedidoid") Long id){
-			return null;
+		public Pedido deletePedidoById(@PathVariable("Pedidoid") int id){
+			return pedidoService.deletePedido(id);
 		}
 	    
 	    
@@ -42,19 +51,19 @@ public class PedidoController {
 	    
 	    @PostMapping
 	    public Pedido createPedido(@RequestBody Pedido pedido) {
-	        return null;
+	        return pedidoService.addPedido(pedido);
 	    }
 	    
 	    
 	    
 	    @PutMapping("/{Pedidoid}")
-	    public Pedido updatePedido(@PathVariable ("Pedidoid")Long id, 
+	    public Pedido updatePedido(@PathVariable ("Pedidoid")int id, 
 	    		@RequestParam(required=false) String status,
-				@RequestParam(required=false) Date fechaPedido,
-				@RequestParam(required=false) Date fechaentrega,
+				@RequestParam(required=false) String fechaPedido,
+				@RequestParam(required=false) String fechaentrega,
 				@RequestParam(required=false) String formaDePago
 				) {
-	    	return null;
+	    	return pedidoService.updatePedido(id,status,fechaPedido,fechaentrega,formaDePago);
 	    }
 
 	

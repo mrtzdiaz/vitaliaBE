@@ -2,25 +2,29 @@ package com.vitalia.vitaliaBE.model;
 
 import java.util.Date;
 
+
 public class Pedido {
 	
-	private Long id;
+	private int  id;
+	private static int total=0; 
 	private String status;
-	private Date fechaPedido;
-	private Date fechaentrega;
+	private String fechaPedido;
+	private String fechaentrega;
 	private String formaDePago;
 	
 	public Pedido() {
-		
+		Pedido.total++;
+		this.id=total;
 	}
 	
-	public Pedido(Long id, String status, Date fechaPedido, Date fechaentrega, String formaDePago) {
+	public Pedido(String status, String fechaPedido, String fechaentrega, String formaDePago) {
 		super();
-		this.id = id;
 		this.status = status;
 		this.fechaPedido = fechaPedido;
 		this.fechaentrega = fechaentrega;
 		this.formaDePago = formaDePago;
+		Pedido.total++;
+		this.id=total;
 	}
 
 	public String getStatus() {
@@ -31,19 +35,19 @@ public class Pedido {
 		this.status = status;
 	}
 
-	public Date getFechaPedido() {
+	public String getFechaPedido() {
 		return fechaPedido;
 	}
 
-	public void setFechaPedido(Date fechaPedido) {
+	public void setFechaPedido(String fechaPedido) {
 		this.fechaPedido = fechaPedido;
 	}
 
-	public Date getFechaentrega() {
+	public String getFechaentrega() {
 		return fechaentrega;
 	}
 
-	public void setFechaentrega(Date fechaentrega) {
+	public void setFechaentrega(String fechaentrega) {
 		this.fechaentrega = fechaentrega;
 	}
 
@@ -54,10 +58,11 @@ public class Pedido {
 	public void setFormaDePago(String formaDePago) {
 		this.formaDePago = formaDePago;
 	}
-
-	public Long getId() {
+	
+	public int getId() {
 		return id;
 	}
+
 
 	@Override
 	public String toString() {
