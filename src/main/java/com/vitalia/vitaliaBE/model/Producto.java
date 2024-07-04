@@ -7,15 +7,23 @@ public class Producto {
 	private Double precio; 
 	private String categoria;
 	
+	private static int total=0;
+	private int id;
+	
 	public Producto(String nombre, String descripcion, String imagen, Double precio, String categoria) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.imagen = imagen;
 		this.precio = precio;
 		this.categoria = categoria;
+		Producto.total++;
+		this.id=total;
 	}//constructor con campos
 	
-	public Producto() {}//constructor vacio
+	public Producto() {
+		Producto.total++;
+		this.id=total;
+	}//constructor vacio
 
 	public String getNombre() {
 		return nombre;
@@ -57,11 +65,17 @@ public class Producto {
 		this.categoria = categoria;
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	@Override
 	public String toString() {
 		return "Producto [nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen + ", precio="
-				+ precio + ", categoria=" + categoria + "]";
+				+ precio + ", categoria=" + categoria + ", id=" + id + "]";
 	}
+
+	
 	
 	
 	

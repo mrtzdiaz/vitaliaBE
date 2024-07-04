@@ -13,14 +13,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vitalia.vitaliaBE.model.Producto;
+import com.vitalia.vitaliaBE.service.ProductoService;
 
 @RestController
 @RequestMapping(path="/api/productos/")
 public class ProductoController {
 	
+	private final ProductoService productoService;
+	
+	
+	
+	public ProductoController(ProductoService productoService) {
+		this.productoService = productoService;
+	}
+
 	@GetMapping
 	public ArrayList<Producto> getProducts(){
-		return null;
+		return productoService.getListaproductos();
 	}
 	
 	@GetMapping(path = "{ProductoId}")
