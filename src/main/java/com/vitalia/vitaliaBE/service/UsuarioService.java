@@ -75,4 +75,15 @@ public class UsuarioService {
 		}
 		return tmpUsuario;
 	}
+	
+	public boolean validateUser(Usuario usuario) {
+		Optional<Usuario> userByEmail = usuarioRepository.findByCorreo(usuario.getCorreo());
+		if(userByEmail.isPresent()) {
+			Usuario tmpUser = userByEmail.get();
+			if(encoder.matches(usuario.getContrasena(), tmpUser.getContrasena())) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
