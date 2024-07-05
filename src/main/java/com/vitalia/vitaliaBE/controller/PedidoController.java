@@ -1,6 +1,5 @@
 package com.vitalia.vitaliaBE.controller;
-
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,19 +31,19 @@ public class PedidoController {
 
 
 	@GetMapping
-	    public ArrayList<Pedido> getAllPedido() {
+	    public List<Pedido> getAllPedido() {
 	        return pedidoService.getAllPedido();
 	    }
 	    
 	   
 	    @GetMapping("{Pedidoid}")
-	    public Pedido getPedidoById(@PathVariable("Pedidoid") int id) {
+	    public Pedido getPedidoById(@PathVariable("Pedidoid") Long id) {
 	    	return pedidoService.getPedido(id);
 	    }
 	    
 	    
 	    @DeleteMapping(path = "{Pedidoid}")
-		public Pedido deletePedidoById(@PathVariable("Pedidoid") int id){
+		public Pedido deletePedidoById(@PathVariable("Pedidoid") Long id){
 			return pedidoService.deletePedido(id);
 		}
 	    
@@ -59,7 +58,7 @@ public class PedidoController {
 	    
 	    
 	    @PutMapping("{Pedidoid}")
-	    public Pedido updatePedido(@PathVariable ("Pedidoid")int id, 
+	    public Pedido updatePedido(@PathVariable ("Pedidoid")Long id, 
 	    		@RequestParam(required=false) String status,
 				@RequestParam(required=false) String fechaPedido,
 				@RequestParam(required=false) String fechaentrega,

@@ -1,6 +1,11 @@
 package com.vitalia.vitaliaBE.model;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,17 +14,22 @@ import javax.persistence.Table;
 public class Pedido {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id", unique=true, nullable=false)
     private Long id; 
+	@Column(nullable=false)
 	private String status;
-	private String fechaPedido;
-	private String fechaentrega;
+	@Column(nullable=false)
+	private Date fechaPedido;
+	@Column(nullable=false)
+	private Date fechaentrega;
+	@Column(nullable=false)
 	private String formaDePago;
-	
 	public Pedido() {
 		
 	}
 	
-	public Pedido(String status, String fechaPedido, String fechaentrega, String formaDePago) {
+	public Pedido(String status, Date fechaPedido, Date fechaentrega, String formaDePago) {
 		super();
 		this.status = status;
 		this.fechaPedido = fechaPedido;
@@ -36,19 +46,19 @@ public class Pedido {
 		this.status = status;
 	}
 
-	public String getFechaPedido() {
+	public Date getFechaPedido() {
 		return fechaPedido;
 	}
 
-	public void setFechaPedido(String fechaPedido) {
+	public void setFechaPedido(Date fechaPedido) {
 		this.fechaPedido = fechaPedido;
 	}
 
-	public String getFechaentrega() {
+	public Date getFechaentrega() {
 		return fechaentrega;
 	}
 
-	public void setFechaentrega(String fechaentrega) {
+	public void setFechaentrega(Date fechaentrega) {
 		this.fechaentrega = fechaentrega;
 	}
 

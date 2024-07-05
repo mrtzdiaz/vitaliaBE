@@ -1,68 +1,69 @@
 package com.vitalia.vitaliaBE.service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vitalia.vitaliaBE.model.Pedido;
+import com.vitalia.vitaliaBE.repository.PedidoRepository;
 
 @Service
 public class PedidoService {
 	
-	private ArrayList<Pedido> listaPedido= new ArrayList<Pedido>();
+	public final PedidoRepository pedidoRepository;
+	
 	
 	@Autowired
-	public PedidoService() {
-		listaPedido.add(new Pedido("Entregado","2024-06-13" ,"2024-06-18","tarjeta de credito"));
-		listaPedido.add(new Pedido("Entregado", "2024-06-23" ,"2024-07-01","tarjeta de debito"));
-		listaPedido.add(new Pedido("Cancelado", "2024-06-21" ,"2024-06-30","tarjeta de credito"));
-		listaPedido.add(new Pedido("Proceso","2024-07-01" ,"2024-07-04","tarjeta de debito"));
+	public PedidoService(PedidoRepository pedidoRepository) {
+	 this.pedidoRepository=pedidoRepository;
 	}
 	
-	public ArrayList<Pedido> getAllPedido(){
-		return listaPedido;
+	public List<Pedido> getAllPedido(){
+		return pedidoRepository.findAll();
 	}
 
-	public Pedido getPedido(int id) {
-		Pedido ped = null;
-		for (Pedido pedido : listaPedido) {
-			if (pedido.getId()==id) {
-				ped = pedido;
-				break;
-			}
-		}
-		return ped;
+	public Pedido getPedido(Long id) {
+		
+		return pedidoRepository.findById(id).orElseThrow(
+				()->new IllegalArgumentException("El pedido con el id [" + id + "] no existe")
+	);
 	}
 
-	public Pedido deletePedido(int id) {
+	public Pedido deletePedido(Long id) {
 		Pedido ped = null;
-		for (Pedido pedido : listaPedido) {
-			if (pedido.getId()==id) {
-				ped = listaPedido.remove(listaPedido.indexOf(pedido));
-				break;
-			}
+		if(pedidoRepository.existsById(id)) {
+			ped = pedidoRepository.findById(id).get();
+			pedidoRepository.deleteById(id);
 		}
+		
 		return ped;
 	}
 
 	public Pedido addPedido(Pedido pedido) {
-		listaPedido.add(pedido);
-		return pedido;
+		Optional<Pedido> ped= 
+				pedidoRepository.findByStatus(pedido.getStatus());
+		if(ped.isEmpty()) {
+			return pedidoRepository.save(pedido);
+		} else {
+			System.out.println("el pedido con el status ["+pedido.getStatus()+"] ya existe");
+			return null;
+		}
 	}
 
-	public Pedido updatePedido(int id, String status, String fechaPedido, String fechaentrega, String formaDePago) {
+	public Pedido updatePedido(Long id, String status, String fechaPedido, String fechaentrega, String formaDePago) {
 		Pedido ped = null;
-		
-		for (Pedido pedido : listaPedido) {
-			if (pedido.getId()==id) {
+			if (pedidoRepository.existsById(id)) {
+				Pedido pedido =pedidoRepository.findById(id).get();
 				if(status !=null) pedido.setStatus(status);
-				if(fechaentrega !=null) pedido.setFechaPedido(fechaPedido);
-				if(fechaentrega !=null) pedido.setFechaentrega(fechaentrega);
+				if(fechaentrega !=null) pedido.setFechaentrega(null);
+				if(fechaentrega !=null) pedido.setFechaentrega(null);
+				pedidoRepository.save(pedido);
 				ped = pedido;
-				break;
+				
 			}
-		}
+		
 		return ped;
 	}
 	
