@@ -2,52 +2,73 @@ package com.vitalia.vitaliaBE.service;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vitalia.vitaliaBE.model.DetallesPedido;
+
 
 @Service
  public class DetallesPedidoService {
 	 
 	private ArrayList<DetallesPedido> listaDetallePedidos = new ArrayList<>();
-    private static long nextId = 1;
-
-	   {
-	        // Ejemplos de detalles de pedido
-	        listaDetallePedidos.add(new DetallesPedido(nextId++, 2, 350.00, 1, 1, 1, 1)); 
-	        listaDetallePedidos.add(new DetallesPedido(nextId++, 1, 360.00, 2, 2, 2, 2)); 
-	        listaDetallePedidos.add(new DetallesPedido(nextId++, 1, 180.00, 3, 3, 3, 3)); 
-	        
-	    }
-
-	    public ArrayList<DetallesPedido> getListaDetallePedidos() {
-	        return listaDetallePedidos;
-	    }
-
-	    public DetallesPedido getDetallesPedido(Long id) {
-	        for (DetallesPedido detallePedido : listaDetallePedidos) {
-	            if (detallePedido.getId()==(id)) {
-	                return detallePedido;
-	            }
-	        }
-	        return null; // Si no se encuentra el detalle del pedido
-	    }
-
-	    public void addDetallesPedido(DetallesPedido detallePedido) {
-	        listaDetallePedidos.add(detallePedido);
-	    }
+	   
+	      // Ejemplos de detalles de pedido
+	       @Autowired
+		   public DetallesPedidoService() { 
+	        listaDetallePedidos.add(new DetallesPedido(700.00, 2, 350.00, 1, 1, 1, 1)); 
+	        listaDetallePedidos.add(new DetallesPedido(360.00, 1, 360.00, 2, 2, 2, 2)); 
+	        listaDetallePedidos.add(new DetallesPedido(180.00, 1, 180.00, 3, 3, 3, 3)); 
+		   }
 	    
-	    public void updateDetallesPedido(Long id, DetallesPedido updatedDetallesPedido) {
-	        for (int i = 0; i < listaDetallePedidos.size(); i++) {
-	            DetallesPedido dp = listaDetallePedidos.get(i);
-	            if (dp.getId()==(id)) {
-	                listaDetallePedidos.set(i, updatedDetallesPedido);
-	                return;
-	            }
-	        }
-	    }
+	       public ArrayList<DetallesPedido> getAllDetallesPedido(){
+	   		return listaDetallePedidos;
+	   	}
 
-	    public void deleteDetallesPedido(Long id) {
-	        listaDetallePedidos.removeIf(dp -> dp.getId()==(id));
-	    }
-	}
+	   	public DetallesPedido getDetallesPedido(int id) {
+	   		DetallesPedido dped = null;
+	   		for (DetallesPedido detallesPedido : listaDetallePedidos) {
+	   			if (detallesPedido.getId()==id) {
+	   				dped = detallesPedido;
+	   				break;
+	   			}
+	   		}
+	   		return dped;
+	   	}
+
+	   	public DetallesPedido deleteDetallesPedido(int id) {
+	   		DetallesPedido dped = null;
+	   		
+	   		for (DetallesPedido detallesPedido : listaDetallePedidos) {
+	   			if (detallesPedido.getId()==id) {
+	   				dped = listaDetallePedidos.remove(listaDetallePedidos.indexOf(detallesPedido));
+	   				break;
+	   			}
+	   		}
+	   		return dped;
+	   	}
+
+	   	public DetallesPedido addDetallesPedido(DetallesPedido detallesPedido) {
+	   		listaDetallePedidos.add(detallesPedido);
+	   		return detallesPedido;
+	   	}
+
+	   	public DetallesPedido updateDetallesPedido(int id, double total, int cantidadOrdenada, double precio, int idPedido, int idUsuario, int idProducto, int idCategoria) {
+	   		DetallesPedido dped = null;
+	   		
+	   		for (DetallesPedido detallesPedido : listaDetallePedidos) {
+	   			if (detallesPedido.getId()==id) {
+	   				if(total !=0) detallesPedido.setTotal(total);
+	   				if(cantidadOrdenada !=0) detallesPedido.setCantidadOrdenada(cantidadOrdenada);
+	   				if(precio !=0) detallesPedido.setPrecio(precio);
+	
+	   				dped = detallesPedido;
+	   				break;
+	   			}
+	   		}
+	   		return dped;
+	   	}
+	   	
+
+}
+	

@@ -2,6 +2,7 @@ package com.vitalia.vitaliaBE.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vitalia.vitaliaBE.model.Categorias;
+import com.vitalia.vitaliaBE.service.CategoriaService;
+
 
 import com.vitalia.vitaliaBE.service.CategoriasService;
 
@@ -23,28 +26,29 @@ import com.vitalia.vitaliaBE.service.CategoriasService;
 
 public class CategoriasController {
 	
-	private final CategoriasService categoriasService;
+	private final CategoriaService categoriaService;
 	
-	public CategoriasController(CategoriasService categoriasService) {
-		this.categoriasService = categoriasService;
+	@Autowired
+	public CategoriasController(CategoriaService categoriaService) {
+		super();
+		this.categoriaService = categoriaService;
 	}
-	
 
 	
+	
 	@GetMapping
-	public ArrayList<Categorias> getcategories(){
-		return categoriasService.getListaCategorias();
+	public ArrayList<Categorias> getAllCategorias(){
+		return categoriaService.getAllCategorias();
 	}
 	
-	
-	@GetMapping(path = "{CategoriasId}")
-	public Categorias getcategoriesById(@PathVariable("CategoriasId") int id){
-		return categoriasService.getCategorias(id);
+	@GetMapping(path = "{Categoriasid}")
+	public Categorias getCategoriasById(@PathVariable("Categoriasid") int id){
+		return categoriaService.getCategorias(id);
 	}
 	
 	@DeleteMapping(path = "{CategoriasId}")
-	public Categorias deletecategoriestById(@PathVariable("CategoriasId") int id){
-		return categoriasService.deleteCategorias(id);
+	public Categorias deletecategoriesById(@PathVariable("CategoriasId") int id){
+		return categoriaService.deleteCategorias(id);
 	}
 	
 	@PostMapping
@@ -54,10 +58,14 @@ public class CategoriasController {
 	
 	@PutMapping(path = "{CategoriasId}")
 	public Categorias updatecategories(@PathVariable("CategoriasId") int id,
-			@RequestParam(required=false) String nombre,
-			@RequestParam(required=false) String Tipodeproducto
+			@RequestParam(required=false) String Tipodeproducto,
+			@RequestParam(required=false) String nombre
 			) {
-	return null;
+	return categoriaService.updateCategorias(id, nombre, Tipodeproducto);
 	}
+
+
+	
+	
 	
 }//class CategoriasController
