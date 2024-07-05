@@ -1,18 +1,19 @@
 package com.vitalia.vitaliaBE.model;
 
 public class Categorias {
-	
+
 		private String nombre;
 		private String Tipodeproducto;
 		
 		private static int total=0;
 		private int id;
 		
+		
+		
 		//constructor vacio
 		public Categorias() {
 			Categorias.total++;
 			this.id=total;
-			
 		}//constructor vacio
 		
 		
@@ -25,10 +26,11 @@ public class Categorias {
 			this.id=total;
 		}//constructor
 
-		
-		
-	
-		
+		//Gett & setters
+		public int getId() {
+			return id;
+		}
+
 		public String getNombre() {
 			return nombre;
 		}
@@ -37,7 +39,6 @@ public class Categorias {
 		public void setNombre(String nombre) {
 			this.nombre = nombre;
 		}
-
 
 		public String getTipodeproducto() {
 			return Tipodeproducto;
@@ -59,5 +60,8 @@ public class Categorias {
 		public String toString() {
 			return "Categorias [id=" + id + ", nombre=" + nombre + ", Tipodeproducto=" + Tipodeproducto + "]";
 		}//to String
+
+
+	
 
 }//class categorias

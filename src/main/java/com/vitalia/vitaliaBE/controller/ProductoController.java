@@ -18,6 +18,7 @@ import com.vitalia.vitaliaBE.service.ProductoService;
 
 @RestController
 @RequestMapping(path="/api/productos/")
+
 public class ProductoController {
 	
 	private final ProductoService productoService;

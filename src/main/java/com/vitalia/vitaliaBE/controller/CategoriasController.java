@@ -17,6 +17,9 @@ import com.vitalia.vitaliaBE.model.Categorias;
 import com.vitalia.vitaliaBE.service.CategoriaService;
 
 
+import com.vitalia.vitaliaBE.service.CategoriasService;
+
+
 
 @RestController
 @RequestMapping(path="/api/categorias/")
@@ -50,7 +53,7 @@ public class CategoriasController {
 	
 	@PostMapping
 	public Categorias addcategories(@RequestBody Categorias categorias) {
-		return categoriaService.addCategorias(categorias);
+		return categoriasService.addCategories(categorias);
 	}
 	
 	@PutMapping(path = "{CategoriasId}")
