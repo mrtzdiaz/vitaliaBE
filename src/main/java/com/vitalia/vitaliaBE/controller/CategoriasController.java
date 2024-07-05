@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vitalia.vitaliaBE.model.Categorias;
-import com.vitalia.vitaliaBE.service.CategoriaService;
-
-
 import com.vitalia.vitaliaBE.service.CategoriasService;
+
 
 
 
@@ -26,10 +24,10 @@ import com.vitalia.vitaliaBE.service.CategoriasService;
 
 public class CategoriasController {
 	
-	private final CategoriaService categoriaService;
+	private final CategoriasService categoriaService;
 	
 	@Autowired
-	public CategoriasController(CategoriaService categoriaService) {
+	public CategoriasController(CategoriasService categoriaService) {
 		super();
 		this.categoriaService = categoriaService;
 	}
@@ -38,7 +36,7 @@ public class CategoriasController {
 	
 	@GetMapping
 	public ArrayList<Categorias> getAllCategorias(){
-		return categoriaService.getAllCategorias();
+		return categoriaService.getListaCategorias();
 	}
 	
 	@GetMapping(path = "{Categoriasid}")
@@ -53,7 +51,7 @@ public class CategoriasController {
 	
 	@PostMapping
 	public Categorias addcategories(@RequestBody Categorias categorias) {
-		return categoriasService.addCategories(categorias);
+		return categoriaService.addCategories(categorias);
 	}
 	
 	@PutMapping(path = "{CategoriasId}")

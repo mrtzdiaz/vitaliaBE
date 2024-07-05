@@ -48,13 +48,6 @@ public class Categorias {
 		public void setTipodeproducto(String tipodeproducto) {
 			Tipodeproducto = tipodeproducto;
 		}
-
-
-		public int getId() {
-			return id;
-		}
-
-
 		//to String
 		@Override
 		public String toString() {
