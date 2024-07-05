@@ -8,12 +8,6 @@ import org.springframework.stereotype.Service;
 import com.vitalia.vitaliaBE.model.Categorias;
 import com.vitalia.vitaliaBE.repository.CategoriasRepository;
 
-
-
-
-
-
-
 @Service
 public class CategoriasService {
 	private final CategoriasRepository categoriasRepository;

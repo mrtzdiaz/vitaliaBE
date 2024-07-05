@@ -1,6 +1,6 @@
 package com.vitalia.vitaliaBE.controller;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -44,7 +44,7 @@ public class LoginController {
 		calendar.add(Calendar.HOUR, 12); // Pruebas
 		//calendar.add(Calendar.MINUTE, 30);// Producción
 		return Jwts.builder().setSubject(username).claim("role", "user")
-		.setIssuedAt(new Date(0))
+		.setIssuedAt(new Date())
 		.setExpiration(calendar.getTime())
 		.signWith(SignatureAlgorithm.HS256, JwtFilter.secret)
 		.compact();

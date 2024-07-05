@@ -50,6 +50,7 @@ public class UsuarioService {
 	public Usuario addOneUser(Usuario user) {
 		Optional<Usuario> tmpUsuario = usuarioRepository.findByCorreo(user.getCorreo());
 		if(tmpUsuario.isEmpty()) {
+			user.setContrasena(encoder.encode(user.getContrasena()));
 			usuarioRepository.save(user);
 			return user;
 		}else {

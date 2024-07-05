@@ -1,37 +1,46 @@
 package com.vitalia.vitaliaBE.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="usuario")
+@Table(name="usuarios")
 public class Usuario {
 	
 	@Id
-    private Long id; 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique=true, nullable=false)
+    private Long id;
+	@Column(nullable=false)
 	private String nombre;
+	@Column(nullable=false)
 	private String apellido;
+	@Column(nullable=false)
 	private String correo;
+	@Column(nullable=false)
 	private String telefono;
+	@Column(nullable=false)
 	private String contrasena;
-	private Boolean administrador;
 	
 
 	public Usuario() {
 		
 	}//Constructor Vacio
 	
-	public Usuario(String nombre, String apellido, String correo, String telefono, String contrasena,
-			boolean administrador) {
+	public Usuario(String nombre, String apellido, String correo, String telefono, String contrasena) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;
 		this.telefono = telefono;
 		this.contrasena = contrasena;
-		this.administrador = administrador;
-	}//Constructor con campos
-	
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
@@ -76,14 +85,10 @@ public class Usuario {
 		this.contrasena = contrasena;
 	}
 
-	public Boolean getAdministrador() {
-		return administrador;
-	}
-
 	@Override
 	public String toString() {
 		return "Usuario [Id="+ id + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", telefono=" + telefono
-				+ ", contrasena=" + contrasena + ", administrador=" + administrador + "]";
+				+ ", contrasena=" + contrasena + "]";
 	}
 	
 	
