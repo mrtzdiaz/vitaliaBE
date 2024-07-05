@@ -1,31 +1,40 @@
 package com.vitalia.vitaliaBE.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="producto")
+@Table(name="productos")
 public class Producto {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id", unique=true, nullable=false)
     private Long id; 
+	@Column(nullable=false)
 	private String nombre;
+	@Column(nullable=false)
 	private String descripcion;
 	private String imagen;
+	@Column(nullable=false)
 	private Double precio; 
-	private String categoria;
+	private Long categoria_id;
 	
-
 	
-	public Producto(String nombre, String descripcion, String imagen, Double precio, String categoria) {
+		
+	public Producto(String nombre, String descripcion, String imagen, Double precio, Long categoria_id) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.imagen = imagen;
 		this.precio = precio;
-		this.categoria = categoria;
-		
+		this.categoria_id = categoria_id;
 	}//constructor con campos
+
+
 	
 	public Producto() {
 	
@@ -63,24 +72,33 @@ public class Producto {
 		this.precio = precio;
 	}
 
-	public String getCategoria() {
-		return categoria;
+
+
+	public Long getCategoria_id() {
+		return categoria_id;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+
+
+	public void setCategoria_id(Long categoria_id) {
+		this.categoria_id = categoria_id;
 	}
+
+
 
 	public Long getId() {
 		return id;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Producto [nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen + ", precio="
-				+ precio + ", categoria=" + categoria + ", id=" + id + "]";
+		return "Producto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen
+				+ ", precio=" + precio + ", categoria_id=" + categoria_id + "]";
 	}
 
+	
 	
 	
 	

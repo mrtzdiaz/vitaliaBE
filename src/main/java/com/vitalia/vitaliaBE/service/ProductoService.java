@@ -1,70 +1,69 @@
 package com.vitalia.vitaliaBE.service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vitalia.vitaliaBE.model.Producto;
+import com.vitalia.vitaliaBE.repository.ProductoRepository;
 
 @Service
 public class ProductoService {
-	private static ArrayList<Producto> listaProductos = new ArrayList<Producto>();
 	
-	
+	public final ProductoRepository productoRepository;
+
 	@Autowired
-	public ProductoService(ArrayList<Producto> listaProductos) {
-		this.listaProductos = listaProductos;
-		listaProductos.add( new Producto("Shampoo Anticaída Romero y Sábila Árbol Verde (500 ml)",
-			"Shampoo natural Anticaída combate la caída y estimula el crecimiento de tu cabello con ingredientes naturales",
-			"https://res.cloudinary.com/duzdr4eb6/image/upload/v1719517036/productos/rvy4fjtnhlttjgl54k89.webp",410.00,"Shampoo"));
-		listaProductos.add(new Producto("Eucalipto jarabe (140 ml)","Auxiliar en el tratamiento de Tos, Flemas, Resfriado Común","https://res.cloudinary.com/duzdr4eb6/image/upload/v1719517072/productos/te38c3ybfpkmuq7ec1qv.webp",100.00,"Medicamento Homeópata"));
-
-	}
-
-
-	public  ArrayList<Producto> getListaproductos() {
-		return listaProductos;
-	}
+	public ProductoService(ProductoRepository productoRepository) {
+		this.productoRepository=productoRepository;
+	}//
 	
-	public  Producto getProduct(int id) {
-		Producto tmpProd=null;
-		for (Producto producto : listaProductos) {
-			if(producto.getId()==id) {
-				tmpProd= producto;
-				break;
-			}
-		}
-		return tmpProd;
+	public List<Producto> getAllProductos(){
+		return productoRepository.findAll();
+	}//getAllProductos	
+	
+	public Producto getProduct(Long id) {
+		return productoRepository.findById(id).orElseThrow(
+				()-> new IllegalArgumentException("El producto con el Id ["+
+						id+" ] no existe")
+				);
 	}//getProduct
 	
-	public  Producto deleteProduct(int id) {
-		Producto tmpProd=null;
-		for (Producto producto : listaProductos) {
-			if(producto.getId()==id) {
-				tmpProd= listaProductos.remove(listaProductos.indexOf(producto));				
-				break;
-			}//if
-		}//for
-		return tmpProd;
-	}//deleteProduct
-	
-	public  Producto addProduct(Producto producto) {
-		Producto tmpProd=null;
-		boolean existe=false;
-		for (Producto prod : listaProductos) {
-			if(prod.getNombre().equals(producto.getNombre())) {
-				existe=true;		
-				break;
-			}//if
-		}//for
-		if(!existe) {
-			listaProductos.add(producto);
-			tmpProd=producto;
+	public Producto deleteProduct(Long id) {
+		Producto tmpProd = null;
+		if(productoRepository.existsById(id)) {
+			tmpProd=productoRepository.findById(id).get();
+			productoRepository.deleteById(id);			
 		}//if
+		return tmpProd;		
+	}//deleteProduct
+
+	public Producto addProduct(Producto producto) {
+		Optional <Producto> tmpProd = productoRepository.findByNombre(producto.getNombre());
+		if(tmpProd.isEmpty()) {
+			return productoRepository.save(producto);
+		}else {
+			System.out.println("El producto ya existe");
+			return null;
+		}	
+	}
+
+	public Producto updateProduct(Long id, String nombre, String descripcion, String imagen, Double precio, Long categoria_id) {
+		Producto tmpProd = null;
+		
+			if(productoRepository.existsById(id)) {
+				Producto producto = productoRepository.findById(id).get();
+				if(nombre!=null)producto.setNombre(nombre);
+				if(descripcion!=null)producto.setDescripcion(descripcion);
+				if(imagen!=null)producto.setImagen(imagen);
+				if(precio!=null)producto.setPrecio(precio);
+				if(precio!=null)producto.setCategoria_id(categoria_id);;
+				productoRepository.save(producto);
+				tmpProd=producto;
+			}		
 		return tmpProd;
-	}//addProduct
-	
+	}
 
 
 	

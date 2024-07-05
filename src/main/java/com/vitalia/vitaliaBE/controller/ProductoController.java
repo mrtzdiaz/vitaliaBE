@@ -1,6 +1,6 @@
 package com.vitalia.vitaliaBE.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,17 +29,17 @@ public class ProductoController {
 	}
 
 	@GetMapping
-	public ArrayList<Producto> getProducts(){
-		return productoService.getListaproductos();
+	public List<Producto> getProducts(){
+		return productoService.getAllProductos();
 	}
 	
 	@GetMapping(path = "{productoId}")
-	public Producto getProductById(@PathVariable("productoId") int id){
+	public Producto getProductById(@PathVariable("productoId") Long id){
 		return productoService.getProduct(id);
 	}
 	
 	@DeleteMapping(path = "{ProductoId}")
-	public Producto deleteProductById(@PathVariable("ProductoId") int id){
+	public Producto deleteProductById(@PathVariable("ProductoId") Long id){
 		return productoService.deleteProduct(id);
 	}
 	
@@ -49,14 +49,14 @@ public class ProductoController {
 	}
 	
 	@PutMapping(path = "{ProductoId}")
-	public Producto updateProduct(@PathVariable("ProductoId") int id,
+	public Producto updateProduct(@PathVariable("ProductoId") Long id,
 			@RequestParam(required=false) String nombre,
 			@RequestParam(required=false) String descripcion,
 			@RequestParam(required=false) String imagen,
 			@RequestParam(required=false) Double precio,
-			@RequestParam(required=false) String categoria
+			@RequestParam(required=false) Long categoria_id
 			) {
-	return null;
+	return productoService.updateProduct(id, nombre, descripcion, imagen, precio,categoria_id);
 	}
 
 }
