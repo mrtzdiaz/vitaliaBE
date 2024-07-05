@@ -64,6 +64,18 @@ public class CategoriasService {
 		return tmpcat;
 	}//addProduct
 	
+	public Categorias updateCategorias(int id, String nombre, String Tipodeproducto) {
+		Categorias cat = null;
+		for (Categorias categorias : listaCategorias) {
+			if (categorias.getId()==id) {
+				if(nombre !=null) categorias.setNombre(nombre);;
+				if(Tipodeproducto !=null) categorias.setTipodeproducto(Tipodeproducto);;
+				cat = categorias;
+				break;
+			}
+		}
+		return cat;
+	}
 	
 
 		

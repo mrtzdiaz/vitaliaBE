@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vitalia.vitaliaBE.model.Categorias;
-import com.vitalia.vitaliaBE.service.CategoriaService;
-
-
 import com.vitalia.vitaliaBE.service.CategoriasService;
+
 
 
 
@@ -26,6 +24,7 @@ import com.vitalia.vitaliaBE.service.CategoriasService;
 
 public class CategoriasController {
 	
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	private final CategoriasService categoriasService;
@@ -54,9 +53,12 @@ public class CategoriasController {
 =======
 >>>>>>> 8407092e53b95f6a51ff262a3f253683ce48ca6b
 	private final CategoriaService categoriaService;
+=======
+	private final CategoriasService categoriaService;
+>>>>>>> jesus
 	
 	@Autowired
-	public CategoriasController(CategoriaService categoriaService) {
+	public CategoriasController(CategoriasService categoriaService) {
 		super();
 		this.categoriaService = categoriaService;
 	}
@@ -65,7 +67,7 @@ public class CategoriasController {
 	
 	@GetMapping
 	public ArrayList<Categorias> getAllCategorias(){
-		return categoriaService.getAllCategorias();
+		return categoriaService.getListaCategorias();
 	}
 	
 	@GetMapping(path = "{Categoriasid}")
@@ -86,6 +88,7 @@ public class CategoriasController {
 	public Categorias addcategories(@RequestBody Categorias categorias) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return categoriasService.addCategories(categorias);
 =======
 		return categoriaService.addCategorias(categorias);
@@ -93,6 +96,9 @@ public class CategoriasController {
 =======
 		return categoriasService.addCategories(categorias);
 >>>>>>> 8407092e53b95f6a51ff262a3f253683ce48ca6b
+=======
+		return categoriaService.addCategories(categorias);
+>>>>>>> jesus
 	}
 	
 	@PutMapping(path = "{CategoriasId}")
