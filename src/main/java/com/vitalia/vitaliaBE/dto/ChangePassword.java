@@ -1,4 +1,4 @@
-package com.vitalia.vitaliaBE.model;
+package com.vitalia.vitaliaBE.dto;
 
 public class ChangePassword {
 	private String password;

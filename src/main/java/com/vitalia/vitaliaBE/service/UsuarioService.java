@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vitalia.vitaliaBE.model.ChangePassword;
+import com.vitalia.vitaliaBE.dto.ChangePassword;
 import com.vitalia.vitaliaBE.model.Usuario;
 import com.vitalia.vitaliaBE.repository.UsuarioRepository;
 

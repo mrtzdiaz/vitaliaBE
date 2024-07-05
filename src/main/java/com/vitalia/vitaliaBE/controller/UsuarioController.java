@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vitalia.vitaliaBE.model.ChangePassword;
+import com.vitalia.vitaliaBE.dto.ChangePassword;
 import com.vitalia.vitaliaBE.model.Usuario;
 import com.vitalia.vitaliaBE.service.UsuarioService;
 
