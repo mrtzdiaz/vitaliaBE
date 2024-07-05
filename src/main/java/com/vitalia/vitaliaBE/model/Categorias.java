@@ -20,15 +20,10 @@ public class Categorias {
 		@Column(nullable=false)
 		private String Tipodeproducto;
 		
-		
-		
-		
 		//constructor vacio
 		public Categorias() {
-			
 		}//constructor vacio
-		
-		
+			
 		//constructor
 		public Categorias(String nombre, String Tipodeproducto) {
 

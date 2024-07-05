@@ -1,6 +1,6 @@
 package com.vitalia.vitaliaBE.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +29,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping
-	public ArrayList<Usuario> getUsers(){
+	public List<Usuario> getUsers(){
 		return usuarioService.getAllUsers();
 	}
 	
