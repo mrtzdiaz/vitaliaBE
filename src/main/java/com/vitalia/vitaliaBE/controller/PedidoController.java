@@ -1,8 +1,8 @@
 package com.vitalia.vitaliaBE.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vitalia.vitaliaBE.model.Pedido;
 import com.vitalia.vitaliaBE.service.PedidoService;
-import com.vitalia.vitaliaBE.service.ProductoService;
+
 
 @RestController
 @RequestMapping(path="/api/pedido/")
@@ -23,6 +23,8 @@ public class PedidoController {
 	
 	private final PedidoService pedidoService;
 	
+	
+	@Autowired
 	 public PedidoController(PedidoService pedidoService) {
 		super();
 		this.pedidoService = pedidoService;
@@ -35,7 +37,7 @@ public class PedidoController {
 	    }
 	    
 	   
-	    @GetMapping("/{Pedidoid}")
+	    @GetMapping("{Pedidoid}")
 	    public Pedido getPedidoById(@PathVariable("Pedidoid") int id) {
 	    	return pedidoService.getPedido(id);
 	    }
@@ -56,7 +58,7 @@ public class PedidoController {
 	    
 	    
 	    
-	    @PutMapping("/{Pedidoid}")
+	    @PutMapping("{Pedidoid}")
 	    public Pedido updatePedido(@PathVariable ("Pedidoid")int id, 
 	    		@RequestParam(required=false) String status,
 				@RequestParam(required=false) String fechaPedido,
