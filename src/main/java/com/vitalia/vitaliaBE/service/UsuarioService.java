@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.vitalia.vitaliaBE.dto.ChangePassword;
 import com.vitalia.vitaliaBE.model.Usuario;
 import com.vitalia.vitaliaBE.repository.UsuarioRepository;
@@ -13,6 +13,9 @@ import com.vitalia.vitaliaBE.repository.UsuarioRepository;
 @Service
 public class UsuarioService {
 	private final UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@Autowired
 	public UsuarioService(UsuarioRepository usuarioRepository) {

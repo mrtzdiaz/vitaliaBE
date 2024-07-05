@@ -16,6 +16,7 @@ import com.vitalia.vitaliaBE.dto.Token;
 import com.vitalia.vitaliaBE.model.Usuario;
 import com.vitalia.vitaliaBE.service.UsuarioService;
 
+import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController
@@ -26,18 +27,16 @@ public class LoginController {
 	public LoginController(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
 	}
-	
-	
-	
+
 	@PostMapping
 	public Token loginUser(@RequestBody Usuario usuario) 
 										throws ServletException {
 		if (usuarioService.validateUser(usuario)) {
-			System.out.println("Usuario válido " + usuario.getEmail());
-			return new Token(generateToken(usuario.getEmail()));
+			System.out.println("Usuario válido " + usuario.getCorreo());
+			return new Token(generateToken(usuario.getCorreo()));
 		}//if
 		throw new ServletException("NOmbre de usuario o contraseña incorrectos [" 
-		+ usuario.getEmail()+ "]");
+		+ usuario.getCorreo()+ "]");
 	}//login
 	
 	private String generateToken(String username) {
@@ -45,7 +44,7 @@ public class LoginController {
 		calendar.add(Calendar.HOUR, 12); // Pruebas
 		//calendar.add(Calendar.MINUTE, 30);// Producción
 		return Jwts.builder().setSubject(username).claim("role", "user")
-		.setIssuedAt(new Date())
+		.setIssuedAt(new Date(0))
 		.setExpiration(calendar.getTime())
 		.signWith(SignatureAlgorithm.HS256, JwtFilter.secret)
 		.compact();
