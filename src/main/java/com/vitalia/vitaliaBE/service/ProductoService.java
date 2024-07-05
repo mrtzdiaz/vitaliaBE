@@ -2,6 +2,7 @@ package com.vitalia.vitaliaBE.service;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vitalia.vitaliaBE.model.Producto;
@@ -11,7 +12,7 @@ public class ProductoService {
 	private static ArrayList<Producto> listaProductos = new ArrayList<Producto>();
 	
 	
-
+	@Autowired
 	public ProductoService(ArrayList<Producto> listaProductos) {
 		this.listaProductos = listaProductos;
 		listaProductos.add( new Producto("Shampoo Anticaída Romero y Sábila Árbol Verde (500 ml)",

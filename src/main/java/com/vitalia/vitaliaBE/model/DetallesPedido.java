@@ -1,7 +1,8 @@
 package com.vitalia.vitaliaBE.model;
 
 public class DetallesPedido {
-	private Long id;
+	private int  id;
+	private static int tol=0; 
     private double total;
     private int cantidadOrdenada;
     private double precio;
@@ -12,7 +13,8 @@ public class DetallesPedido {
 
     // Constructor vacío
     public DetallesPedido() {
-
+    	DetallesPedido.tol++;
+		this.id=tol;
     }
 
     // Constructor con campos
@@ -25,15 +27,13 @@ public class DetallesPedido {
         this.idUsuario = idUsuario;
         this.idProducto = idProducto;
         this.idCategoria = idCategoria;
+        DetallesPedido.tol++;
+		this.id=tol;
     }
 
     // Getters y Setters
-    public Long getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public double getTotal() {
