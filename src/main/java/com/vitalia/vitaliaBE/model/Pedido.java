@@ -1,20 +1,22 @@
 package com.vitalia.vitaliaBE.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-
-
+@Entity
+@Table(name="pedido")
 public class Pedido {
 	
-	private int  id;
-	private static int total=0; 
+	@Id
+    private Long id; 
 	private String status;
 	private String fechaPedido;
 	private String fechaentrega;
 	private String formaDePago;
 	
 	public Pedido() {
-		Pedido.total++;
-		this.id=total;
+		
 	}
 	
 	public Pedido(String status, String fechaPedido, String fechaentrega, String formaDePago) {
@@ -23,8 +25,7 @@ public class Pedido {
 		this.fechaPedido = fechaPedido;
 		this.fechaentrega = fechaentrega;
 		this.formaDePago = formaDePago;
-		Pedido.total++;
-		this.id=total;
+		
 	}
 
 	public String getStatus() {
@@ -59,7 +60,7 @@ public class Pedido {
 		this.formaDePago = formaDePago;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 

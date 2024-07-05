@@ -1,15 +1,22 @@
 package com.vitalia.vitaliaBE.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="usuario")
 public class Usuario {
 	
-	private Long id;
+	@Id
+    private Long id; 
 	private String nombre;
 	private String apellido;
 	private String correo;
 	private String telefono;
 	private String contrasena;
 	private Boolean administrador;
-	private static Long total = (long) 1;
+	
 
 	public Usuario() {
 		
@@ -17,7 +24,6 @@ public class Usuario {
 	
 	public Usuario(String nombre, String apellido, String correo, String telefono, String contrasena,
 			boolean administrador) {
-		this.id = Usuario.total++;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;

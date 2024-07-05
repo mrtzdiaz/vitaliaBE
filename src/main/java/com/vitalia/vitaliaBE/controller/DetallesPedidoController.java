@@ -61,7 +61,7 @@ public class DetallesPedidoController {
 			@RequestParam(required=false) double precio,
 			@RequestParam(required=false) double total
 			) {
-    	return detallesPedidoService.updateDetallesPedido(id, total, cantidadOrdenada, precio, cantidadOrdenada, cantidadOrdenada, cantidadOrdenada, cantidadOrdenada);
+    	return detallesPedidoService.updateDetallesPedido(id, total, cantidadOrdenada, precio);
     }
    
    
