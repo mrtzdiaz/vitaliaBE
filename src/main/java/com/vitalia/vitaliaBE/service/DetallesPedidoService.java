@@ -53,7 +53,7 @@ import com.vitalia.vitaliaBE.model.DetallesPedido;
 	   		return detallesPedido;
 	   	}
 
-	   	public DetallesPedido updateDetallesPedido(int id, double total, int cantidadOrdenada, double precio, int idPedido, int idUsuario, int idProducto, int idCategoria) {
+	   	public DetallesPedido updateDetallesPedido(int id, double total, int cantidadOrdenada, double precio) {
 	   		DetallesPedido dped = null;
 	   		
 	   		for (DetallesPedido detallesPedido : listaDetallePedidos) {

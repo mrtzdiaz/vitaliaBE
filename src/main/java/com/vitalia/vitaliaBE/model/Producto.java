@@ -1,14 +1,22 @@
 package com.vitalia.vitaliaBE.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="producto")
 public class Producto {
+	
+	@Id
+    private Long id; 
 	private String nombre;
 	private String descripcion;
 	private String imagen;
 	private Double precio; 
 	private String categoria;
 	
-	private static int total=0;
-	private int id;
+
 	
 	public Producto(String nombre, String descripcion, String imagen, Double precio, String categoria) {
 		this.nombre = nombre;
@@ -16,13 +24,11 @@ public class Producto {
 		this.imagen = imagen;
 		this.precio = precio;
 		this.categoria = categoria;
-		Producto.total++;
-		this.id=total;
+		
 	}//constructor con campos
 	
 	public Producto() {
-		Producto.total++;
-		this.id=total;
+	
 	}//constructor vacio
 
 	public String getNombre() {
@@ -65,7 +71,7 @@ public class Producto {
 		this.categoria = categoria;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
