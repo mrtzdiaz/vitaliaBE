@@ -1,6 +1,7 @@
 package com.vitalia.vitaliaBE.controller;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,18 +32,18 @@ public class CategoriasController {
 	}
 		
 	@GetMapping
-	public ArrayList<Categorias> getcategories(){
-		return categoriaService.getListaCategorias();
+	public List<Categorias> getcategories(){
+		return categoriaService.getAllCategories();
 	}
 	
 	
 	@GetMapping(path = "{CategoriasId}")
-	public Categorias getcategoriesById(@PathVariable("CategoriasId") int id){
-		return categoriaService.getCategorias(id);
+	public Categorias getcategoriesById(@PathVariable("CategoriasId") long id){
+		return categoriaService.getCategories(id);
 	}
 	
 	@DeleteMapping(path = "{CategoriasId}")
-	public Categorias deletecategoriesById(@PathVariable("CategoriasId") int id){
+	public Categorias deletecategoriesById(@PathVariable("CategoriasId") long id){
 		return categoriaService.deleteCategorias(id);
 	}
 	
@@ -52,7 +53,7 @@ public class CategoriasController {
 	}
 	
 	@PutMapping(path = "{CategoriasId}")
-	public Categorias updatecategories(@PathVariable("CategoriasId") int id,
+	public Categorias updatecategories(@PathVariable("CategoriasId") long id,
 			@RequestParam(required=false) String Tipodeproducto,
 			@RequestParam(required=false) String nombre
 			) {
