@@ -17,8 +17,6 @@ import com.vitalia.vitaliaBE.model.Categorias;
 import com.vitalia.vitaliaBE.service.CategoriasService;
 
 
-
-
 @RestController
 @RequestMapping(path="/api/categorias/")
 
