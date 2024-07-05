@@ -18,7 +18,7 @@ import com.vitalia.vitaliaBE.service.PedidoService;
 
 
 @RestController
-@RequestMapping(path="/api/pedido/")
+@RequestMapping(path="/api/pedidos/")
 public class PedidoController {
 	
 	private final PedidoService pedidoService;
