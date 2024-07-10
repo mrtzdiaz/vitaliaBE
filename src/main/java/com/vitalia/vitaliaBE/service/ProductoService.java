@@ -58,7 +58,7 @@ public class ProductoService {
 				if(descripcion!=null)producto.setDescripcion(descripcion);
 				if(imagen!=null)producto.setImagen(imagen);
 				if(precio!=null)producto.setPrecio(precio);
-				if(precio!=null)producto.setCategoria_id(categoria_id);;
+				if(categoria_id!=null)producto.setCategoria_id(categoria_id);;
 				productoRepository.save(producto);
 				tmpProd=producto;
 			}		
