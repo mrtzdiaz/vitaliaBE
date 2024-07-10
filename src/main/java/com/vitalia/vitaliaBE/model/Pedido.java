@@ -1,12 +1,17 @@
 package com.vitalia.vitaliaBE.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,22 +25,27 @@ public class Pedido {
 	@Column(nullable=false)
 	private String status;
 	@Column(nullable=false)
-	private Date fechaPedido;
+	private Date fecha_pedido;
 	@Column(nullable=false)
-	private Date fechaentrega;
+	private Date fecha_entrega;
 	@Column(nullable=false)
 	private String formaDePago;
+	@Column(nullable=false)
+	private Long usuario_id;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_pedido")
+	List<DetallesPedido> detallespedido = new ArrayList<DetallesPedido>();
+	
 	public Pedido() {
 		
 	}
 	
-	public Pedido(String status, Date fechaPedido, Date fechaentrega, String formaDePago) {
-		super();
+	public Pedido(String status, Date fecha_pedido, Date fecha_entrega, String formaDePago, Long usuario_id) {
 		this.status = status;
-		this.fechaPedido = fechaPedido;
-		this.fechaentrega = fechaentrega;
+		this.fecha_pedido = fecha_pedido;
+		this.fecha_entrega = fecha_entrega;
 		this.formaDePago = formaDePago;
-		
+		this.usuario_id = usuario_id;
 	}
 
 	public String getStatus() {
@@ -47,19 +57,19 @@ public class Pedido {
 	}
 
 	public Date getFechaPedido() {
-		return fechaPedido;
+		return fecha_pedido;
 	}
 
 	public void setFechaPedido(Date fechaPedido) {
-		this.fechaPedido = fechaPedido;
+		this.fecha_pedido = fechaPedido;
 	}
 
 	public Date getFechaentrega() {
-		return fechaentrega;
+		return fecha_entrega;
 	}
 
 	public void setFechaentrega(Date fechaentrega) {
-		this.fechaentrega = fechaentrega;
+		this.fecha_entrega = fechaentrega;
 	}
 
 	public String getFormaDePago() {
@@ -74,13 +84,15 @@ public class Pedido {
 		return id;
 	}
 
+	public Long getUsuario_id() {
+		return usuario_id;
+	}
 
 	@Override
 	public String toString() {
-		return "pedido [id=" + id + ", status=" + status + ", fechaPedido=" + fechaPedido + ", fechaentrega="
-				+ fechaentrega + ", formaDePago=" + formaDePago + "]";
+		return "Pedido [id=" + id + ", status=" + status + ", fecha_pedido=" + fecha_pedido + ", fecha_entrega="
+				+ fecha_entrega + ", formaDePago=" + formaDePago + ", usuario_id=" + usuario_id + "]";
 	}
-	
-	
+
 
 }

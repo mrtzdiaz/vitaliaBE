@@ -1,11 +1,17 @@
 package com.vitalia.vitaliaBE.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +25,9 @@ public class Categorias {
 		private String nombre;
 		@Column(nullable=false)
 		private String Tipodeproducto;
+		@OneToMany(cascade = CascadeType.ALL)
+		@JoinColumn(name="categoria_id")
+		List<Producto> productos = new ArrayList<Producto>();
 		
 		//constructor vacio
 		public Categorias() {

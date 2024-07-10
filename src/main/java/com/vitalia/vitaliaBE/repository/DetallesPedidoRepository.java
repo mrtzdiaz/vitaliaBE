@@ -7,6 +7,4 @@ import com.vitalia.vitaliaBE.model.DetallesPedido;
 
 @Repository
 public interface DetallesPedidoRepository extends JpaRepository<DetallesPedido, Long> {
-    Optional<DetallesPedido> findByIdPedido(int idPedido);
-    Optional<DetallesPedido> findByIdUsuario(int idUsuario);
 }

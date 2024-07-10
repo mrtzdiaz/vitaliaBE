@@ -1,6 +1,9 @@
 package com.vitalia.vitaliaBE.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,14 +12,19 @@ import javax.persistence.Table;
 public class DetallesPedido {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique=true, nullable=false)
     private Long id; 
+	@Column(nullable=false)
     private double total;
+	@Column(nullable=false)
     private int cantidadOrdenada;
+	@Column(nullable=false)
     private double precio;
-    private int idPedido;
-    private int idUsuario;
-    private int idProducto;
-    private int idCategoria;
+	@Column(nullable=false)
+    private Long id_pedido;
+	@Column(nullable=false)
+    private Long id_producto;
 
     // Constructor vacío
     public DetallesPedido() {
@@ -24,24 +32,23 @@ public class DetallesPedido {
     }
 
     // Constructor con campos
-    public DetallesPedido(double total, int cantidadOrdenada, double precio, int idPedido, int idUsuario, int idProducto, int idCategoria) {
-        super();
-        this.total = total;
-        this.cantidadOrdenada = cantidadOrdenada;
-        this.precio = precio;
-        this.idPedido = idPedido;
-        this.idUsuario = idUsuario;
-        this.idProducto = idProducto;
-        this.idCategoria = idCategoria;
-       
+    public DetallesPedido(double total, int cantidadOrdenada, double precio, Long id_pedido, Long id_producto) {
+    	super();
+    	this.total = total;
+    	this.cantidadOrdenada = cantidadOrdenada;
+    	this.precio = precio;
+    	this.id_pedido = id_pedido;
+    	this.id_producto = id_producto;
     }
+    
 
     // Getters y Setters
     public Long getId() {
         return id;
     }
 
-    public double getTotal() {
+
+	public double getTotal() {
         return total;
     }
 
@@ -65,42 +72,26 @@ public class DetallesPedido {
         this.precio = precio;
     }
 
-    public int getIdPedido() {
-        return idPedido;
-    }
+    public Long getId_pedido() {
+		return id_pedido;
+	}
 
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
-    }
+	public void setId_pedido(Long id_pedido) {
+		this.id_pedido = id_pedido;
+	}
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
+	public Long getId_producto() {
+		return id_producto;
+	}
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+	public void setId_producto(Long id_producto) {
+		this.id_producto = id_producto;
+	}
 
-    public int getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
-
-    public int getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
-    @Override
-    public String toString() {
-        return "DetallePedido [id=" + id + ", total=" + total + ", cantidadOrdenada=" + cantidadOrdenada + ", precio=" + precio
-                + ", idPedido=" + idPedido + ", idUsuario=" + idUsuario + ", idProducto=" + idProducto + ", idCategoria=" + idCategoria + "]";
-    }
+	@Override
+	public String toString() {
+		return "DetallesPedido [id=" + id + ", total=" + total + ", cantidadOrdenada=" + cantidadOrdenada + ", precio="
+				+ precio + ", id_pedido=" + id_pedido + ", id_producto=" + id_producto + "]";
+	}
 
 }
