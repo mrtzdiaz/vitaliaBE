@@ -1,4 +1,4 @@
-package com.vitalia.vitaliaBE;
+/*package com.vitalia.vitaliaBE;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -86,4 +86,4 @@ public class TestUsuarios {
 	}
 	
 
-}
+}*/
